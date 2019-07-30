@@ -1,0 +1,7 @@
+
+db.sqlite3
+env/
+media/
+settings.py
+*.pyc
+*.cfg
