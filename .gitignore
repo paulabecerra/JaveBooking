@@ -5,3 +5,4 @@ media/
 settings.py
 *.pyc
 *.cfg
+.DS_Store
