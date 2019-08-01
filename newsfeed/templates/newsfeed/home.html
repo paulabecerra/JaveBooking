@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Este es el newsfeed</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'users/style.css' %}" type="text/css">
+    </head>
+    <body>
+        <h1>Aquí se mostrarán los horarios y los news de la app</h1>
+        <li>
+            <a href="{% url "usuarios:logout" %}"><p>Logout</p></a>
+        </li>
+    </body>
+</html>

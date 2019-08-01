@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+{% block head_content %}
+    <head>
+        <meta charset="utf-8">
+        <title>Login View</title>
+        <style type="text/css">
+            {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                font-family: Arial;
+                font-size: 24px;
+                transform: translateX(-50%) translateY(-50%);
+            }
+        </style>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'users/style.css' %}" type="text/css">
+    </head>
+    {% endblock %}
+
+    {% block container %}
+    <body>
+        <p>Ingresa a tu cuenta</p>
+        <form class="" method="POST" action="{% url "usuarios:login" %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" type="text" name="login"
+                placeholder="Username" value="">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password"
+                placeholder="Password" value="">
+            </div>
+            <button type="submit" value="submit">Sign in!</button>
+            <p>¿No tienes una cuenta?<a href="{% url "usuarios:signup" %}"> Regístrate aquí!</a></p></p>
+            </p>
+        </form>
+    </body>
+    {% endblock %}
+</html>
