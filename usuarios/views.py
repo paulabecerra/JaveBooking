@@ -4,11 +4,16 @@ from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 #utilities
 from django.utils.decorators import method_decorator
 
+#Forms
 from usuarios.forms import SignupForm
+
+#models
+from usuarios.models import Profile
 
 
 #Users Login view
@@ -23,7 +28,7 @@ class LoginView(TemplateView):
         else:
             return render(
                 request=request,
-                template_name='newsfeed/home.html'
+                template_name='users/login.html'
             )
 
     def get(self, request):
@@ -37,31 +42,37 @@ class LoginView(TemplateView):
 
 #Users Logout view
 @method_decorator(login_required, name='dispatch')
+#-------ESTA VISTA A VECES SE ROMPE Y NO ENTIENDO POR QUÉ------------#
 class LogoutView(TemplateView):
     def get(self, request):
         logout(request)
-        return redirect('users:login')
+        return redirect('usuarios:login')
 
 
 #Users sign up view
 class SignupView(TemplateView):
+#--------THIS WHOLE PROCESS WORKS FINE-----------------------#
     def post(self, request):
         form = SignupForm(request.POST)
         if form.is_valid():
             user = User.objects.create(
                 username=form.cleaned_data.get('username'),
                 password=form.cleaned_data.get('password'),
-                full_name=form.cleaned_data.get('fullname'),
+                first_name=form.cleaned_data.get('first_name'),
+                last_name=form.cleaned_data.get('last_name'),
                 email=form.cleaned_data.get('email')
             )
             user.save()
+            profile = Profile.objects.create(
+                user=user
+            )
             login(request, user)
             return redirect('newsfeed:home')
         else:
-            form = SignupForm()
+            #form = SignupForm()
             return render(
                 request=request,
-                template_name='usuarios/signup.html'
+                template_name='users/signup.html'
             )
             return redirect('usuarios:signup')
 

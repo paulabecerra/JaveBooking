@@ -1,15 +1,36 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Este es el newsfeed</title>
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'users/style.css' %}" type="text/css">
-    </head>
-    <body>
-        <h1>Aquí se mostrarán los horarios y los news de la app</h1>
-        <li>
-            <a href="{% url "usuarios:logout" %}"><p>Logout</p></a>
-        </li>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>Javebooking Home</title>
+{% endblock %}
+
+{% block container %}
+    {% if error %}
+    <p class="alert alert-danger">{{ error }}</p>
+    {% endif %}
+
+    {% include "navbar.html" %}
+
+    <div class="jumbotron text-center" style="background-color:lightblue">
+        <h1>Welcome to Javebooking</h1>
+        <p>Select your own schedule, practice English anytime, anywhere!</p>
+    </div>
+
+    <div class="container" style="background-color:#ECECEB">
+        <div class="row">
+            <div class="col-sm-4 mt-3">
+                <h3>Schedules</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+            <div class="col-sm-4 mt-3">
+                <h3>Meet your teachers</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+            <div class="col-sm-4 mt-3">
+                <h3>Events</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

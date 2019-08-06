@@ -13,7 +13,7 @@ urlpatterns= [
     ),
     path(
         route='logout/',
-        view=views.LoginView.as_view(),
+        view=views.LogoutView.as_view(),
         name='logout',
     ),
     path(

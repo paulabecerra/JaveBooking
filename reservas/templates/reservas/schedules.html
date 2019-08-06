@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>Available Schedules</title>
+{% endblock %}
+
+{% block container %}
+    {% include "navbar.html" %}
+    <div class="container">
+        <div class="jumbotron text-center" style="background-color:lightblue">
+            <h1>Welcome @{{ request.user.username }}! Set your availability</h1>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="user" value="{{ user.pk }}"/>
+            {# Teacher #}
+            <div class="form-group">
+                <input type="text" name="teacher" value="{{ request.user.get_full_name }}"/>
+                <p>What's your name?</p>
+            </div>
+            {# Day Field #}
+            <div class="form-group">
+                <label for="SelectDay">Select Day</label>
+                <select class="form-control" name="day">
+                    <option value="">Monday</option>
+                    <option value="">Tuesday</option>
+                    <option value="">Wednesday</option>
+                    <option value="">Thursday</option>
+                    <option value="">Firday</option>
+                    <option value="">Saturday</option>
+                </select>
+            {# Time Field #}
+            <div class="form-group">
+                <label for="EnterHour">Enter time</label>
+                <input type="time" name="time" min='5:00' max='23:00'>
+                <p>Set the hour for your session</p>
+            </div>
+            {# Levek Field #}
+            <div class="form-group">
+                <label for="SelectDay">Select Level</label>
+                <select class="form-control" name="level">
+                    <option value="">Level 1</option>
+                    <option value="">Level 1-2</option>
+                    <option value="">Level 2</option>
+                    <option value="">Level 2-3</option>
+                    <option value="">Level 3</option>
+                    <option value="">Level 3-4</option>
+                    <option value="">Level 4</option>
+                    <option value="">Level 4-5</option>
+                    <option value="">Level 5</option>
+                    <option value="">Level 5-6</option>
+                    <option value="">Level 6</option>
+                    <option value="">Level 6-7</option>
+                    <option value="">Level 7</option>
+                    <option value="">Level 7-8</option>
+                    <option value="">Level 8</option>
+                </select>
+            <button type="submit" class="btn btn-primary btn-block mt5" name="time">Publish!</button>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}
