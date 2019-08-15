@@ -30,8 +30,10 @@ class AvailableSchedule(forms.ModelForm):
         ('Level 7-8', 'Level 7-8'),
         ('Level 8', 'Level 8'),
     )
-    model = AvailableSchedule
-    teacher = forms.CharField(label='teacher', max_length=100)
     day = forms.ChoiceField(choices=DAY_CHOICES)
     time = forms.DateTimeField()
     level = forms.ChoiceField(choices=LEVEL_CHOICES)
+
+    class Meta():
+        model = AvailableSchedule
+        fields = "__all__"
